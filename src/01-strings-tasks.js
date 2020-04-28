@@ -202,18 +202,18 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
-  // if (width <= 2 && height <= 2) {
-  //   return '┌┐\n └┘\n';
-  // }
+function getRectangleString(width, height) {
+  // throw new Error('Not implemented');
+  if (width <= 2 && height <= 2) {
+    return '┌┐\n└┘\n';
+  }
 
-  // let res = `┌${'─'.repeat(width - 2)}┐\n`;
-  // for (let i = 0; i < height - 2; i += 1) {
-  //   res += `│${' '.repeat(width - 2)}│\n`;
-  // }
-  // res += `└${'─'.repeat(width - 2)}┘\n`;
-  // return res;
+  let res = `┌${'─'.repeat(width - 2)}┐\n`;
+  for (let i = 0; i < height - 2; i += 1) {
+    res += `│${' '.repeat(width - 2)}│\n`;
+  }
+  res += `└${'─'.repeat(width - 2)}┘\n`;
+  return res;
 }
 
 /**
@@ -232,22 +232,22 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
-  /*
+function encodeToRot13(str) {
+  // throw new Error('Not implemented');
+
   const code = {
     input: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
     output: 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm',
-};
+  };
 
-let res = '';
+  let res = '';
 
-for (let char of str) {
-    let symbol = code.output[code.input.indexOf(char)] || char;
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+    const symbol = code.output[code.input.indexOf(char)] || char;
     res += symbol;
-}
-return res;
-*/
+  }
+  return res;
 }
 
 /**
@@ -264,7 +264,7 @@ return res;
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return !!((typeof value === 'string' || value instanceof String));
+  return !!(typeof value === 'string' || value instanceof String);
 }
 
 /**
@@ -293,10 +293,58 @@ function isString(value) {
  */
 function getCardId(value) {
   const deck = [
-    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
-    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
-    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
-    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
   ];
   let res;
   deck.forEach((val, index) => {
