@@ -135,8 +135,20 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  // throw new Error('Not implemented');
+  const leftPoint1 = { x: rect1.top, y: rect1.left };
+  const leftPoint2 = { x: rect2.top, y: rect2.left };
+  const rightPoint1 = { x: (rect1.top + rect1.width), y: (rect1.left + rect1.height) };
+  const rightPoint2 = { x: (rect2.top + rect2.width), y: (rect2.left + rect2.height) };
+
+  if (leftPoint1.x >= rightPoint2.x || leftPoint2.x >= rightPoint1.x) {
+    return false;
+  }
+  if (leftPoint1.y >= rightPoint2.y || leftPoint2.y >= rightPoint1.y) {
+    return false;
+  }
+  return true;
 }
 
 
@@ -166,8 +178,11 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  // throw new Error('Not implemented');
+  const l = ((point.x - circle.center.x) ** 2) + ((point.y - circle.center.y) ** 2);
+  const rad = (circle.radius ** 2);
+  return l < rad;
 }
 
 
@@ -182,8 +197,14 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  // throw new Error('Not implemented');
+  for (let i = 0; i < str.length; i += 1) {
+    if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+      return str[i];
+    }
+  }
+  return null;
 }
 
 
@@ -209,8 +230,11 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  // throw new Error('Not implemented');
+  const [min, max] = [Math.min(a, b), Math.max(a, b)];
+  const str = `${isStartIncluded ? '[' : '('}${min}, ${max}${isEndIncluded ? ']' : ')'}`;
+  return str;
 }
 
 
@@ -347,8 +371,9 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  // throw new Error('Not implemented');
+  return num.toString(n);
 }
 
 
